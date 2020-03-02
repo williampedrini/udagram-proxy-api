@@ -1,0 +1,52 @@
+{
+  "name": "udagram-proxy-api",
+  "version": "1.0.0",
+  "description": "Proxy API responsible for being an aggregator for all the APIs.",
+  "main": "./server.js",
+  "scripts": {
+    "build": "npm run clean && npm install && tsc && npm run copyBuildFiles",
+    "clean": "rm -rf www/ || true",
+    "copyBuildFiles": "cp .npmrc www/.npmrc && cp package.json www/package.json",
+    "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
+    "dockerBuildImage": "docker build -t williamcustodio/udagram_proxy_api:latest .",
+    "dockerPushImage": "docker push williamcustodio/udagram_proxy_api:latest",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
+  },
+  "keywords": [],
+  "author": "William Custodio",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/jsonwebtoken": "^8.3.2",
+    "aws-sdk": "^2.429.0",
+    "bcrypt": "latest",
+    "body-parser": "^1.18.3",
+    "class-transformer": "^0.2.3",
+    "class-validator": "0.10.1",
+    "cors": "latest",
+    "express": "^4.16.4",
+    "email-validator": "latest",
+    "jsonwebtoken": "^8.5.1",
+    "microframework-w3tec": "^0.6.3",
+    "reflect-metadata": "^0.1.13",
+    "routing-controllers": "0.8.0",
+    "typed-rest-client": "^1.7.1",
+    "typedi": "^0.8.0"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.26",
+    "@types/express": "^4.16.1",
+    "@types/node": "^11.11.6",
+    "@types/sequelize": "^4.27.44",
+    "@types/validator": "^10.9.0",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "tslint": "^5.14.0",
+    "typescript": "^3.3.4000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/williampedrini/udagram.git"
+  }
+}

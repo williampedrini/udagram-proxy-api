@@ -1,0 +1,243 @@
+{
+  "info": {
+    "_postman_id": "abde13ac-de57-4a70-bf46-4ac94179e275",
+    "name": "Proxy API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Check JWT Token",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "05e43225-e4f9-4821-9980-22f497e603ba",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{jwtToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{proxyApp}}/users/auth/verification",
+          "host": [
+            "{{proxyApp}}"
+          ],
+          "path": [
+            "users",
+            "auth",
+            "verification"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e736fdf6-188b-49c5-936c-14c26e944264",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"email\": \"rafael@pedrinicustodio.com\",\n\t\"password\": \"11\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{proxyApp}}/users/auth/login",
+          "host": [
+            "{{proxyApp}}"
+          ],
+          "path": [
+            "users",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"email\": \"rafael@pedrinicustodio.com\",\n    \"password\": \"11\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{proxyApp}}/users",
+          "host": [
+            "{{proxyApp}}"
+          ],
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Find User By Email",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{jwtToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{proxyApp}}/users/rafael@pedrinicustodio.com",
+          "host": [
+            "{{proxyApp}}"
+          ],
+          "path": [
+            "users",
+            "rafael@pedrinicustodio.com"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Find Feed by Id",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{jwtToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{proxyApp}}/feed/{{feedId}}",
+          "host": [
+            "{{proxyApp}}"
+          ],
+          "path": [
+            "feed",
+            "{{feedId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Feed",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "8e05a2db-d295-4cf6-9415-a4924f7055c0",
+            "exec": [
+              "var response = JSON.parse(responseBody);",
+              "pm.environment.set(\"feedId\", response.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"caption\": \"Test\",\n    \"url\": \"test.jpg\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{proxyApp}}/feed",
+          "host": [
+            "{{proxyApp}}"
+          ],
+          "path": [
+            "feed"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
