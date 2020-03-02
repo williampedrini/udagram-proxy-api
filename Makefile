@@ -1,4 +1,4 @@
-IMAGE := williamcustodio/udagram_feed_api
+IMAGE := williamcustodio/udagram_proxy_api
 
 build:
 	npm run build
