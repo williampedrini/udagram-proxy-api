@@ -8,8 +8,11 @@ services:
 # fail, build the images (if this step fails
 # the whole Travis build is considered a failure).
 script:
-  - 'make build'
-  - 'make image'
+  - 'make aws-client'
+  - 'make aws-credentials'
+  - 'make aws-eksctl'
+  - 'make aws-eksctl-configuration'
+  - 'make kubectl'
 
 # only execute the following instructions in
 # the case of a success (failing at this point
@@ -24,6 +27,7 @@ after_success:
     docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
     make push-image;
     fi
+  - 'make deployment'
 
 # don't notify when things fail
 notifications:
