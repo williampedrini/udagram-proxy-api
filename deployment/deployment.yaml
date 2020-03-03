@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proxy-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: proxy-api
+  template:
+    metadata:
+      labels:
+        name: proxy-api
+        version: 1.0.0
+        component: api
+    spec:
+      containers:
+        - name: proxy-api-container
+          env:
+            - name: AUTHENTICATION_API_HOST
+              value: "authentication-api"
+            - name: FEED_API_HOST
+              value: "feed-api"
+            - name: USER_API_HOST
+              value: "user-api"
+          image: williamcustodio/udagram_proxy_api:latest
+          ports:
+            - containerPort: 8080
