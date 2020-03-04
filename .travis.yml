@@ -3,16 +3,9 @@ node_js: 12
 services:
   - 'docker'
 
-# first build the application.
-# after the test execution is done and didn't
-# fail, build the images (if this step fails
-# the whole Travis build is considered a failure).
+# Build the application.
 script:
-  - 'make aws-client'
-  - 'make aws-credentials'
-  - 'make aws-eksctl'
-  - 'make aws-eksctl-configuration'
-  - 'make kubectl'
+  - 'make build'
 
 # only execute the following instructions in
 # the case of a success (failing at this point
@@ -23,10 +16,13 @@ script:
 # page of your repository and then change the
 # environment in the settings panel.
 after_success:
-  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
-    make push-image;
-    fi
+  - 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+  - 'make push-image'
+  - 'make aws-client'
+  - 'make aws-credentials'
+  - 'make aws-eksctl'
+  - 'make aws-eksctl-configuration'
+  - 'make kubectl'
   - 'make deployment'
 
 # don't notify when things fail
