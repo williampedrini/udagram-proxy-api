@@ -37,4 +37,5 @@ kubectl:
 	kubectl version --short --client;
 
 push-image:
+	docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD};
 	docker push $(IMAGE)
