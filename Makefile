@@ -5,7 +5,7 @@ KUBECTL_URL := https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/b
 
 aws-client:
 	curl "$(AWS_CLI_URL)" -o "awscliv2.zip";
-	unzip awscliv2.zip;
+	unzip awscliv2.zip & > /dev/null;
 	sudo ./aws/install & > /dev/null;
 
 aws-credentials:
@@ -13,7 +13,7 @@ aws-credentials:
 	echo "[default]\naws_access_key_id=${AWS_ACCESS_KEY_ID}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY}\nregion=${AWS_REGION}\n" >> ~/.aws/credentials
 
 aws-eksctl:
-	curl --silent --location "$(AWS_EKSCTL_URL)" | tar xz -C /tmp;
+	curl --silent --location "$(AWS_EKSCTL_URL)" | tar xz -C /tmp & > /dev/null;
 	sudo mv /tmp/eksctl /usr/local/bin;
 	eksctl version;
 
