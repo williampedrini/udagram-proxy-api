@@ -1,4 +1,4 @@
-# Rest House API
+# Udagram Proxy API
 
 This project contains a Proxy API responsible for being an aggregator for all the APIs.
 
