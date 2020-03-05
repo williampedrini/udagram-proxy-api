@@ -38,4 +38,4 @@ kubectl:
 
 push-image:
 	docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD};
-	docker push $(IMAGE)
+	docker push $(IMAGE):${TRAVIS_BUILD_NUMBER}
