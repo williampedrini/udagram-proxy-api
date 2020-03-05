@@ -35,7 +35,8 @@ To run the API execute the following command inside of the root directory:
 
 This application will be deployed by Travis CI when the build is executed. 
 Firstly, It will perform the build of the application and create an image based on the generated binary. 
-Finally, It will perform the push of the image to Docker Hub and trigger a deployment to AWS EKS. 
+Finally, It will perform the push of the image to 
+[Docker Hub](https://hub.docker.com/repository/docker/williamcustodio/udagram_proxy_api) and trigger a deployment to AWS EKS. 
 For more information regarding the script please take a look at the files [Makefile](Makefile) 
 and also [.travis.yml](.travis.yml).
 
